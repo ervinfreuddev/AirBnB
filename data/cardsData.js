@@ -4,7 +4,7 @@ export const cardsData = [
     title: "Outdoor getaways",
   },
   {
-    img: "https://www.guidesulysse.com/images/destinations/iStock-815365434.jpg",
+    img: "https://cartetouristique.com/wp-content/uploads/Carte-touristique-de-Liverpool.jpg",
     title: "Unique stays",
   },
   {

@@ -5,6 +5,8 @@ import { exploreData } from "../data/exploreData";
 import SmallCard from "../components/SmallCard";
 import { cardsData } from "../data/cardsData";
 import MediumCard from "../components/MediumCard";
+import LargeCard from "../components/LargeCard";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -41,11 +43,22 @@ export default function Home() {
         <section>
           <h2 className="text-4xl font-semibold py-8">Live Anywehre</h2>
 
-          {cardsData?.map(({ img, title }) => (
-            <MediumCard key={title} img={img} title={title} />
-          ))}
+          <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3 -,ml-3">
+            {cardsData?.map(({ img, title }) => (
+              <MediumCard key={title} img={img} title={title} />
+            ))}
+          </div>
         </section>
+
+        <LargeCard
+          img={require("../images/banner-image.jpg")}
+          title="The Greatest Outdoors"
+          description="Wishlists curated by Airbnb."
+          buttonText="Get Inspired"
+        />
       </main>
+
+      <Footer />
     </div>
   );
 }
