@@ -4,6 +4,8 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { format } from "date-fns";
 import { rangeShape } from "react-date-range/dist/components/DayCell";
+import { searchResults } from "../data/searchResults";
+import InfoCard from "../components/InfoCard";
 
 function Search() {
   const router = useRouter();
@@ -36,6 +38,22 @@ function Search() {
             <p className="button">Price</p>
             <p className="button">Rooms and beds</p>
             <p className="button">More filters</p>
+          </div>
+          <div className="flex flex-col">
+            {searchResults.map(
+              ({ img, location, title, description, star, price, total }) => (
+                <InfoCard
+                  key={location}
+                  img={img}
+                  location={location}
+                  title={title}
+                  description={description}
+                  star={star}
+                  price={price}
+                  total={total}
+                />
+              )
+            )}
           </div>
         </section>
       </main>
