@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { rangeShape } from "react-date-range/dist/components/DayCell";
 import { searchResults } from "../data/searchResults";
 import InfoCard from "../components/InfoCard";
+import Map from "../components/Map";
 
 function Search() {
   const router = useRouter();
@@ -55,6 +56,9 @@ function Search() {
               )
             )}
           </div>
+        </section>
+        <section className="inline-flex">
+          <Map />
         </section>
       </main>
       <Footer />
