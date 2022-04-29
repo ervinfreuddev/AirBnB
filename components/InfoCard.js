@@ -9,7 +9,7 @@ function InfoCard({ img, location, title, description, star, price, total }) {
     hover:shadow-lg transition duration-200 ease-out first:border-t"
     >
       <div
-        className="relative h-24 w-40 md:w-80
+        className="relative h-48 w-40 md:w-80
     flex-shrink-0"
       >
         <Image
