@@ -1,17 +1,10 @@
 import { useState } from "react";
-import ReactMapGL from "react-map-gl";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import getCenter from "geolib/es/getCenter";
 import { Result } from "postcss";
 
 function Map({ searchResults }) {
-  const [viewport, setViewport] = useState({
-    width: "100%",
-    height: "100%",
-    latitude: 37.7577,
-    longitude: -122.4376,
-    zoom: 11,
-  });
-
+  const [selectedLocation, setSelectedLocation] = useState({});
   //   transform the search results object into the
   //   { latitude: 52.516272, longitude: 13.377722 }
   //   object
@@ -20,10 +13,16 @@ function Map({ searchResults }) {
     latitude: result.lat,
   }));
 
-  console.log(coordinates);
-
   // The latitude and longitude of the center of locations coordinates
   const center = getCenter(coordinates);
+
+  const [viewport, setViewport] = useState({
+    width: "100%",
+    height: "100%",
+    latitude: center.latitude,
+    longitude: center.longitude,
+    zoom: 11,
+  });
 
   return (
     <ReactMapGL
@@ -32,7 +31,33 @@ function Map({ searchResults }) {
       {...viewport}
       onDrag={(nextViewport) => setViewport(nextViewport)}
       onZoom={(nextViewport) => setViewport(nextViewport)}
-    ></ReactMapGL>
+    >
+      {searchResults.map((result) => (
+        <div key={result.long}>
+          <Marker
+            longitude={result.long}
+            latitude={result.lat}
+            // offsetLeft={-20}
+            // offsetTop={-10}
+            offset="auto"
+          >
+            <p
+              role="img"
+              onClick={() => setSelectedLocation(result)}
+              className="cursor-pointer text-2xl animate-bounce"
+            >
+              &#182;
+            </p>
+          </Marker>
+          {/* The popup that should show if we click on a Marker */}
+          {selectedLocation.long === result.long ? (
+            <Popup closeOnClick={true}>{resul.title}</Popup>
+          ) : (
+            false
+          )}
+        </div>
+      ))}
+    </ReactMapGL>
   );
 }
 
